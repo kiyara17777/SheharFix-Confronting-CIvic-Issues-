@@ -197,18 +197,6 @@ const PublicView = () => {
     }
   ];
 
-  // Build gallery images from backend resolved items first, then append static samples
-  const backendGallery = backendResolved.map((i) => ({
-    before: i.beforeImage,
-    after: i.afterImage,
-    title: i.title,
-    category: i.category,
-    location: i.location,
-    resolvedDate: i.resolvedDate,
-  }));
-
-  const beforeAfterGallery = [...backendGallery, ...staticBeforeAfterGallery];
-
   // Convert context issues to public view format and merge with static data
   const convertedContextIssues = contextResolvedIssues.map(issue => ({
     ...issue,
@@ -222,6 +210,7 @@ const PublicView = () => {
 
   const resolvedIssues = [...backendResolved, ...convertedContextIssues, ...staticResolvedIssues];
 
+  // Static gallery data must be defined BEFORE it is used below
   const staticBeforeAfterGallery = [
     {
       before: beforePothole,
@@ -248,6 +237,18 @@ const PublicView = () => {
       resolvedDate: '2024-01-08'
     }
   ];
+
+  // Build gallery images from backend resolved items first, then append static samples
+  const backendGallery = backendResolved.map((i) => ({
+    before: i.beforeImage,
+    after: i.afterImage,
+    title: i.title,
+    category: i.category,
+    location: i.location,
+    resolvedDate: i.resolvedDate,
+  }));
+
+  const beforeAfterGallery = [...backendGallery, ...staticBeforeAfterGallery];
 
   const filteredIssues = resolvedIssues.filter(issue => {
     const matchesSearch = issue.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
