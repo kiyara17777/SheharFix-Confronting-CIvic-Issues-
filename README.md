@@ -40,105 +40,136 @@ URL: https://lovable.dev/projects/604cbf6f-d9cd-4104-b6d0-ea6bb8259679
 
 ---
 
+# ⚡ Installation & Setup
 
-
-#⚡ Installation & Setup
+## 1) Clone the repository
 ```bash
-## 1. Clone the repository
 git clone https://github.com/<your-username>/SheharFix.git
 cd SheharFix
 ```
-##2. Install dependencies
 
-Using npm:
+## 2) Frontend (Vite + React + TS)
 ```bash
+# from project root
 npm install
-
-#or
-
-yarn install
-```
-##3. Run development server
-``` bash
 npm run dev
-# or
-yarn dev
 ```
-Open 👉 http://localhost:5173
+- Opens at: http://localhost:5173
+- API base URL default: `http://localhost:3001/api` as defined in `src/services/api.ts`.
+  - To change it quickly, edit `src/services/api.ts` and update `API_BASE_URL`.
+  - Alternatively, align the backend port to 3001 (see Backend section) to match the default.
 
-##4.Build for production
+## 3) Backend API (Express)
+The backend lives in `backend/` and by default listens on port 4000 (configurable via `backend/.env` -> `PORT`).
+
+```bash
+cd backend
+npm install
+npm run dev   # or: npm start
+```
+- Default API URL: `http://localhost:4000/api`
+- To match the frontend default (`http://localhost:3001/api`), either:
+  - Set `PORT=3001` in `backend/.env`, or
+  - Change the frontend `API_BASE_URL` in `src/services/api.ts`.
+
+## 4) Machine Learning Service (FastAPI)
+The ML service lives in `ML/` and runs on port 8000.
+
+```bash
+cd ML
+
+# 1) Create virtual environment (Windows PowerShell)
+python -m venv .venv
+. .venv\Scripts\Activate.ps1
+
+# 2) Install dependencies
+pip install -r requirements.txt
+
+# 3) Start ML API
+uvicorn app:app --host 127.0.0.1 --port 8000 --log-level info
+# or
+python app.py
+```
+
+## 5) Build frontend for production
 ```bash
 npm run build
 ```
-Backend Setup
-```
-cd backend
-yarn install
-yarn start
-```
 
-Machine Learning Service (ML)
-```
-cd C:\SheharFix\ml
-
-# 1️⃣ Create virtual environment (if not already)
-python -m venv .venv
-
-# 2️⃣ Activate virtual environment
-.venv\Scripts\Activate.ps1
-
-# 3️⃣ Install dependencies
-pip install -r requirements.txt
-pip install fastapi uvicorn tensorflow pillow python-multipart
-
-# 4️⃣ Start ML API
-python app.py
-
-```
-Pull Latest Changes
-```
+## 6) Pull the latest changes
+```bash
 git pull origin main
-
 ```
-#📸 Screenshots
 
+---
+
+## 🔧 Environment Variables
+Create the following environment files as needed (do not commit them):
+
+- `backend/.env`
+  - `PORT=4000` (or `3001` to match frontend default)
+  - `MONGODB_URI=<your-connection-string>`
+  - `JWT_SECRET=<your-secret>`
+  - Optional: Cloudinary keys if you enable cloud uploads
+
+- Frontend API base URL is hardcoded by default in `src/services/api.ts` to `http://localhost:3001/api`.
+  - Option A: Change the backend `PORT` to `3001`.
+  - Option B: Edit `API_BASE_URL` in `src/services/api.ts` to point to your backend (e.g., `http://localhost:4000/api`).
+
+---
+
+## 🚀 Quick Start (Ports & Commands)
+
+| Service   | Path         | Port  | Start Command                         |
+|-----------|--------------|-------|----------------------------------------|
+| Frontend  | `/`          | 5173  | `npm run dev`                          |
+| Backend   | `backend/`   | 4000* | `cd backend && npm run dev`            |
+| ML API    | `ML/`        | 8000  | `cd ML && uvicorn app:app --port 8000` |
+
+`*` Set `PORT=3001` in `backend/.env` if you want to match the frontend default API base URL.
+
+---
+
+## 📸 Screenshots
 (Add screenshots/GIFs of your Citizen app & Admin dashboard here.)
 
-#🛡️ Roadmap
+---
 
-✅ Role-based login
+## 🛡️ Roadmap
+- ✅ Role-based login
+- ✅ Mobile-first citizen app
+- ✅ Admin dashboard with analytics
+- 🔲 AI-powered categorization
+- 🔲 Push notifications (issue updates)
+- 🔲 QR code-based ward entry
+- 🔲 PDF/Excel exports and scheduled reports
 
-✅ Mobile-first citizen app
+---
 
-✅ Admin dashboard with analytics
-
-🔲 AI-powered categorization
-
-🔲 Push notifications (issue updates)
-
-🔲 QR code-based ward entry
-
-🔲 PDF/Excel exports and scheduled reports
-
-🤝 Contributing
-
-##Fork the repo
-
-##Create a new branch:
-```bash 
+## 🤝 Contributing
+1. Fork the repo
+2. Create a new branch
+```bash
 git checkout -b feature/new-feature
 ```
-
-Commit your changes:
-```
+3. Commit your changes
+```bash
 git commit -m "feat: add new feature"
 ```
+4. Push and open a Pull Request
 
-Push and open a Pull Request
+---
 
-📜 License
+## 🧰 Troubleshooting
+- If the frontend can’t reach the API:
+  - Ensure the backend is running and the port matches `API_BASE_URL` in `src/services/api.ts`.
+  - Check CORS errors and confirm the backend allows requests from `http://localhost:5173`.
+- Port already in use:
+  - Change the port (backend via `backend/.env`, ML via the `--port` flag) or stop the conflicting process.
+- ML model file missing:
+  - Ensure `ML/garbage_pothole_streetlight.keras` exists. See logs printed by `app.py` when loading the model.
 
-MIT License © 2025 [Janhvi/CivicCrew]
+---
 
-
-
+## 📜 License
+MIT License 2025 [Janhvi/CivicCrew]
