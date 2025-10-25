@@ -170,7 +170,7 @@ git commit -m "feat: add new feature"
 - Developed minor frontend components and UI enhancements using **React + Tailwind CSS**.
 - Prepared presentation materials and showcased the project for **internal hackathon selection**.
 
-**Live Demo:** [SheharFix Demo](https://lovable.dev/projects/604cbf6f-d9cd-4104-b6d0-ea6bb8259679)
+**Live Demo:** [SheharFix Demo](https://shehar-fix-confronting-civic-issues.vercel.app/)
 
 ------
 ## 📜 License
