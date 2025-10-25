@@ -3,7 +3,6 @@
 A **role-based civic engagement platform** that empowers **citizens** to report issues via a **mobile-first app** and enables **administrators** to track, manage, and resolve issues through a **web dashboard**.
 
 ---
-URL: https://lovable.dev/projects/604cbf6f-d9cd-4104-b6d0-ea6bb8259679
 
 ## 🚀 Features
 
@@ -128,10 +127,6 @@ Create the following environment files as needed (do not commit them):
 
 `*` Set `PORT=3001` in `backend/.env` if you want to match the frontend default API base URL.
 
----
-
-## 📸 Screenshots
-(Add screenshots/GIFs of your Citizen app & Admin dashboard here.)
 
 ---
 
@@ -170,6 +165,13 @@ git commit -m "feat: add new feature"
   - Ensure `ML/garbage_pothole_streetlight.keras` exists. See logs printed by `app.py` when loading the model.
 
 ---
+## Contributions by Kiyara
+- Conducted research on civic engagement platforms and feature prioritization.
+- Developed minor frontend components and UI enhancements using **React + Tailwind CSS**.
+- Prepared presentation materials and showcased the project for **internal hackathon selection**.
 
+**Live Demo:** [SheharFix Demo](https://lovable.dev/projects/604cbf6f-d9cd-4104-b6d0-ea6bb8259679)
+
+------
 ## 📜 License
 MIT License 2025 [Janhvi/CivicCrew]
